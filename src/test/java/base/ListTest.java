@@ -19,7 +19,7 @@ public class ListTest {
         lst.add("a");
         lst.add("a");
         lst.add("a");
-        assertEquals(4,lst.size());
+        assertEquals(3,lst.size());
     }
 
     @Test
