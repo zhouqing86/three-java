@@ -1,16 +1,12 @@
 package base;
 
-import junit.framework.Assert;
 import model.Person;
 import org.junit.Test;
 
 import java.util.*;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.hasItems;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class ListTest {
     @Test

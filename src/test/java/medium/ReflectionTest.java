@@ -110,7 +110,7 @@ public class ReflectionTest {
 
     @Test
     public void testMethodGetReturnType() throws Exception {
-        Method method = People.class.getMethod("getName", null);
+        Method method = People.class.getMethod("getName");
         assertEquals(0, method.getParameterTypes().length);
         assertEquals("java.lang.String", method.getReturnType().getName());
     }
