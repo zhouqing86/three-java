@@ -4,9 +4,6 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.Collections;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
