@@ -9,8 +9,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class AnnotationUtil {
+public class ValidateAnnotationUtil {
 
     public static String getTableName(Class<?> aClass) {
         Table annotation = aClass.getAnnotation(Table.class);
@@ -131,5 +133,13 @@ public class AnnotationUtil {
             resultList.add(validateObject(obj));
         }
         return resultList;
+    }
+
+    public static List<ValidateResult> errorValidateResultList(List<ValidateResult> validateResultList) throws Exception {
+        return validateResultList.stream().filter(result -> !result.isValid()).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public static boolean isValid(List<ValidateResult> validateResultList) throws Exception {
+        return errorValidateResultList(validateResultList).size() == 0;
     }
 }
