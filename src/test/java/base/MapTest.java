@@ -23,6 +23,18 @@ public class MapTest {
         Collections.sort(list, c2);
         assertEquals("Hello", list.get(0).getValue());
         assertEquals("World", list.get(1).getValue());
+    }
 
+    @Test
+    public void testTreeMap() throws Exception {
+        TreeMap<Integer, String> treeMap = new TreeMap<>();
+        treeMap.put(3, "abc");
+        treeMap.put(1, "def");
+        treeMap.put(2, "adc");
+
+        assertEquals(new Integer(1), treeMap.firstKey());
+        for (Map.Entry entry : treeMap.entrySet()) {
+            System.out.println(entry.getKey());
+        }
     }
 }
