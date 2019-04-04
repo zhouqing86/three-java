@@ -34,6 +34,7 @@ public class SimpleObservable {
 
             @Override
             public void onNext(Integer integer) {
+                System.out.println("onNext, i=" + i);
                 i++;
                 if (i == 2) {
                     // 在RxJava 2.x 中，新增的Disposable可以做到切断的操作，让Observer观察者不再接收上游事件
