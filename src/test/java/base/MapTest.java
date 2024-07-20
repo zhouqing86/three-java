@@ -32,7 +32,7 @@ public class MapTest {
         treeMap.put(1, "def");
         treeMap.put(2, "adc");
 
-        assertEquals(new Integer(1), treeMap.firstKey());
+        assertEquals(Integer.valueOf(1), treeMap.firstKey());
         for (Map.Entry entry : treeMap.entrySet()) {
             System.out.println(entry.getKey());
         }

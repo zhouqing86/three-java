@@ -29,7 +29,7 @@ public class GuavaParallelProgrammingTest {
 
         TimeUnit.MILLISECONDS.sleep(120);
 
-        assertEquals(new Integer(70), callback.getResult());
+        assertEquals(Integer.valueOf(70), callback.getResult());
     }
 
     @Test

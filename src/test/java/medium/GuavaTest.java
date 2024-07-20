@@ -23,7 +23,7 @@ public class GuavaTest {
     public void testOptional() throws Exception {
         Optional<Integer> optInt = Optional.of(5);
         assertEquals(true, optInt.isPresent());
-        assertEquals(new Integer(5), optInt.get());
+        assertEquals(Integer.valueOf(5), optInt.get());
     }
 
     @Test
@@ -153,7 +153,7 @@ public class GuavaTest {
                 return input.length();
             }
         });
-        assertEquals(new Integer(5), countIterator.next());
+        assertEquals(Integer.valueOf(5), countIterator.next());
     }
 }
 
