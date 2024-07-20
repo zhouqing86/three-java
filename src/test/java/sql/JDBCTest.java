@@ -1,7 +1,8 @@
 package sql;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.Statement;
 
 public class JDBCTest {
 
-    @BeforeClass
+    @BeforeAll
     public static void init() throws Exception{
         JDBCUtils jdbcUtils = new JDBCUtils("h2-properties.xml");
         Connection connection = null;

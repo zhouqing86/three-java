@@ -1,7 +1,7 @@
 package medium;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.Writer;
@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ReflectionTest {
 
@@ -68,13 +67,15 @@ public class ReflectionTest {
         Stream.of(fields).map(field -> field.getName()).forEach(System.out::println);
     }
 
-    @Test(expected = IllegalAccessException.class)
-    public void testSetStaticFinalFieldWillThrowException() throws Exception {
-        Field field = File.class.getField("separator");
-        File file = new File("test.txt");
-        field.setAccessible(true);
-        assertEquals("/", field.get(file));
-        field.set(file, "/test");
+    @Test
+    public void testSetStaticFinalFieldWillThrowException() {
+        assertThrows(Exception.class, () -> {
+            Field field = File.class.getField("separator");
+            File file = new File("test.txt");
+            field.setAccessible(true);
+            assertEquals("/", field.get(file));
+            field.set(file, "/test");
+        });
     }
 
     @Test

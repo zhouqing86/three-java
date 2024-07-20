@@ -1,12 +1,11 @@
 package medium;
 
 import com.google.common.cache.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * guava cache采用了类似ConcurrentHashMap的思想，分段加锁，在每个段里面各自负责自己的淘汰的事情。
  * 在Guava根据一定的算法进行分段，这里要说明的是，如果段太少那竞争依然很严重，如果段太多会容易出现随机淘汰

@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.reflect.Invokable;
 import com.google.common.reflect.Reflection;
 import com.google.common.reflect.TypeToken;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.lang.reflect.InvocationHandler;
@@ -12,10 +12,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 public class GuavaReflectionTest {
     @Test
     public void testUnderstandingJavaTypeErasion() throws Exception {

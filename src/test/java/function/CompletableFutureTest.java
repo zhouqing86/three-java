@@ -1,14 +1,13 @@
 package function;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 // https://dzone.com/articles/20-examples-of-using-javas-completablefuture?fromrel=true
@@ -98,7 +97,7 @@ public class CompletableFutureTest {
         StringBuilder result = new StringBuilder();
         CompletableFuture.completedFuture("thenAccept message")
                 .thenAccept(s -> result.append(s));
-        assertTrue("Result was empty", result.length() > 0);
+        assertTrue(result.length() > 0);
     }
 
     @Test
@@ -107,7 +106,7 @@ public class CompletableFutureTest {
         CompletableFuture<Void> cf = CompletableFuture.completedFuture("thenAcceptAsync message")
                 .thenAcceptAsync(s -> result.append(s));
         cf.join();
-        assertTrue("Result was empty", result.length() > 0);
+        assertTrue(result.length() > 0);
     }
 
     static final class ThreadPerTaskExecutor implements Executor {
@@ -154,7 +153,7 @@ public class CompletableFutureTest {
         CompletableFuture<String> cf = CompletableFuture.completedFuture("message").thenApplyAsync(String::toUpperCase, new DelayedExecutor(1, TimeUnit.SECONDS));
         CompletableFuture<String> exceptionHandler = cf.handle((s, th) -> { return (th != null) ? "message upon cancel" : ""; });
         cf.completeExceptionally(new RuntimeException("completed exceptionally"));
-        assertTrue("Was not completed exceptionally", cf.isCompletedExceptionally());
+        assertTrue(cf.isCompletedExceptionally());
         try {
             cf.join();
             fail("Should have thrown an exception");
@@ -169,8 +168,8 @@ public class CompletableFutureTest {
         CompletableFuture<String> cf = CompletableFuture.completedFuture("message").thenApplyAsync(String::toUpperCase,
                 new DelayedExecutor(1, TimeUnit.SECONDS));
         CompletableFuture<String> cf2 = cf.exceptionally(throwable -> "canceled message");
-        assertTrue("Was not canceled", cf.cancel(true));
-        assertTrue("Was not completed exceptionally", cf.isCompletedExceptionally());
+        assertTrue(cf.cancel(true));
+        assertTrue(cf.isCompletedExceptionally());
         assertEquals("canceled message", cf2.join());
     }
 
@@ -206,7 +205,7 @@ public class CompletableFutureTest {
                 .acceptEither(CompletableFuture.completedFuture(original).thenApplyAsync(s -> delayedLowerCase(s)),
                         s -> result.append(s).append("acceptEither"));
         cf.join();
-        assertTrue("Result was empty", result.toString().endsWith("acceptEither"));
+        assertTrue(result.toString().endsWith("acceptEither"));
     }
 
     @Test
@@ -216,7 +215,7 @@ public class CompletableFutureTest {
         CompletableFuture.completedFuture(original).thenApply(String::toUpperCase).runAfterBoth(
                 CompletableFuture.completedFuture(original).thenApply(String::toLowerCase),
                 () -> result.append("done"));
-        assertTrue("Result was empty", result.length() > 0);
+        assertTrue( result.length() > 0);
     }
 
     @Test
@@ -276,7 +275,7 @@ public class CompletableFutureTest {
                 result.append(res);
             }
         });
-        assertTrue("Result was empty", result.length() > 0);
+        assertTrue( result.length() > 0);
     }
 
     @Test
@@ -290,7 +289,7 @@ public class CompletableFutureTest {
             futures.forEach(cf -> assertTrue(isUpperCase(cf.getNow(null))));
             result.append("done");
         });
-        assertTrue("Result was empty", result.length() > 0);
+        assertTrue(result.length() > 0);
     }
 
     @Test
@@ -306,6 +305,6 @@ public class CompletableFutureTest {
                     result.append("done");
                 });
         allOf.join();
-        assertTrue("Result was empty", result.length() > 0);
+        assertTrue(result.length() > 0);
     }
 }

@@ -1,10 +1,8 @@
 package function;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 public class PerfectLambdaTest {
     @Test

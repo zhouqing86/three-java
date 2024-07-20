@@ -1,16 +1,13 @@
 package base;
 
-import net.sf.cglib.core.Local;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。
 public class DateTest {

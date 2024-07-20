@@ -1,13 +1,12 @@
 package base;
 
 import org.apache.commons.io.IOUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.Scanner;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JavaIOTest {
     @Test
     public void testInputStream() throws Exception {

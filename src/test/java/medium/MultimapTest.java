@@ -1,14 +1,15 @@
 package medium;
 
-import com.google.common.collect.*;
-import org.junit.Test;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.SetMultimap;
+import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MultimapTest {
     @Test
     public void testInitialListMultiMap() throws Exception {
