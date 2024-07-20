@@ -18,8 +18,7 @@ public class StreamTest {
 
     public static void main(String[] args) {
         List<Student> lstStuName = list.stream().filter(dt -> dt.getFirstName().startsWith("A"))
-                .collect(Collectors.toList());
-
+                .toList();
         System.out.println("List of students whose name starts with letter A : "+lstStuName);
 
 
@@ -27,33 +26,31 @@ public class StreamTest {
         System.out.println("Students grouped by the department names : "+mapData);
 
 
-        long countStudent = list.stream().count();
+        long countStudent = list.size();
         System.out.println("Total count of students : "+countStudent);
 
-        OptionalInt maxAge = list.stream().mapToInt(dt -> dt.getAge()).max();
+        OptionalInt maxAge = list.stream().mapToInt(Student::getAge).max();
         System.out.println("Max age of student : "+maxAge.getAsInt());
 
+        Optional<Student> studentWithMaxAge = list.stream().max(Comparator.comparing(Student::getAge));
+        System.out.println("Student with max age: " + studentWithMaxAge);
 
-        List<String> lstDepartments = list.stream().map(dt -> dt.getDepartmantName()).distinct()
-                .collect(Collectors.toList());
+        List<String> lstDepartments = list.stream().map(Student::getDepartmantName).distinct().toList();
         System.out.println("All distinct department names : "+lstDepartments);
 
 
-        Map<String, Long> countStudentInEachdept = list.stream()
-                .collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.counting()));
+        Map<String, Long> countStudentInEachdept = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.counting()));
         System.out.println("Student count in each department : "+countStudentInEachdept);
 
-        List<Student> lstStudent = list.stream().filter(dt -> dt.getAge() < 30).collect(Collectors.toList());
+        List<Student> lstStudent = list.stream().filter(student -> student.getAge() < 30).toList();
         System.out.println("List of students whose age is less than 30 : "+lstStudent);
 
 
-        List<Student> lstStu = list.stream().filter(dt -> dt.getRank() > 50 && dt.getRank() < 100)
-                .collect(Collectors.toList());
+        List<Student> lstStu = list.stream().filter(student -> student.getRank() > 50 && student.getRank() < 100).toList();
         System.out.println("List of students whose rank is between 50 and 100 : "+lstStu);
 
 
-        Map<String, Double> mapAvgAge = list.stream()
-                .collect(Collectors.groupingBy(Student::getGender, Collectors.averagingInt(Student::getAge)));
+        Map<String, Double> mapAvgAge = list.stream().collect(Collectors.groupingBy(Student::getGender, Collectors.averagingInt(Student::getAge)));
         System.out.println("Average age of male and female students : "+mapAvgAge);
 
         Map.Entry<String, Long> entry = list.stream()
@@ -61,24 +58,22 @@ public class StreamTest {
                 .max(Map.Entry.comparingByValue()).get();
         System.out.println("Department having maximum number of students : "+entry);
 
-        List<Student> lstDelhistudent = list.stream().filter(dt -> dt.getCity().equals("Delhi"))
-                .sorted(Comparator.comparing(Student::getFirstName)).collect(Collectors.toList());
+        List<Student> lstDelhistudent = list.stream().filter(student -> student.getCity().equals("Delhi"))
+                .sorted(Comparator.comparing(Student::getFirstName).thenComparing(Student::getLastName)).toList();
         System.out.println("List of students who stays in Delhi and sort them by their names : "+lstDelhistudent);
 
-        Map<String, Double> collect = list.stream()
-                .collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.averagingInt(Student::getRank)));
+        Map<String, Double> collect = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.averagingInt(Student::getRank)));
         System.out.println("Average rank in all departments  : "+collect);
 
 
-        Map<String, Optional<Student>> studentData = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName,
-                Collectors.minBy(Comparator.comparing(Student::getRank))));
+        Map<String, Optional<Student>> studentData = list.stream().
+                collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.maxBy(Comparator.comparingInt(Student::getRank))));
         System.out.println("Highest rank in each department  : "+studentData);
 
-        List<Student> stuRankSorted = list.stream().sorted(Comparator.comparing(Student::getRank))
-                .collect(Collectors.toList());
+        List<Student> stuRankSorted = list.stream().sorted(Comparator.comparing(Student::getRank)).toList();
         System.out.println("List of students sorted by their rank  : "+stuRankSorted);
 
-        Student student = list.stream().sorted(Comparator.comparing(Student::getRank)).skip(1).findFirst().get();
+        Student student = list.stream().sorted(Comparator.comparing(Student::getRank).reversed()).skip(1).findFirst().get();
         System.out.println("Second highest rank student  : "+student);
 
     }
